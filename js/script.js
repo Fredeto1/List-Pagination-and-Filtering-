@@ -3,48 +3,42 @@ Treehouse Techdegree:
 FSJS project 2 - List Filter and Pagination
 ******************************************/
    
-// Study guide for this project - https://drive.google.com/file/d/1OD1diUsTMdpfMDv677TfL1xO2CEkykSz/view?usp=sharing
+
+const listItems = document.querySelectorAll(".student-item"); //Stores the student list items from the student list 
+const itemsPerPage = 10; //Stores the number of items to show per page which is set to 10 
 
 
-/*** 
-   Add your global variables that store the DOM elements you will 
-   need to reference and/or manipulate. 
-   
-   But be mindful of which variables should be global and which 
-   should be locally scoped to one of the two main functions you're 
-   going to create. A good general rule of thumb is if the variable 
-   will only be used inside of a function, then it can be locally 
-   scoped to that function.
-***/
-
-
-
-
-/*** 
-   Create the `showPage` function to hide all of the items in the 
-   list except for the ten you want to show.
-
-   Pro Tips: 
-     - Keep in mind that with a list of 54 students, the last page 
-       will only display four.
-     - Remember that the first student has an index of 0.
-     - Remember that a function `parameter` goes in the parens when 
-       you initially define the function, and it acts as a variable 
-       or a placeholder to represent the actual function `argument` 
-       that will be passed into the parens later when you call or 
-       "invoke" the function 
-***/
-
-
+//The showPage Function-hides all the items in the list except the ten you want to show                           
+const showPage = (list, page) => { 
+   //A local variable: (page number-10)-10 = the first item shown
+   const startIndex = (page * itemsPerPage) - itemsPerPage; 
+   //A local variable : page number-10 = the last item shown
+   const endIndex = page * itemsPerPage;  
+   //For loop to to display any list item with an index greater than or equal to the startIndex variable and less than the endIndex variable                    
+   for (let i = 0; i < list.length; i++) {   
+      //The if statment produces 10 items per page      
+      if (i >= startIndex && i < endIndex) {      
+         //Shows the desired items on the page. The CSS list-style-type property is used to define the style of the list item marker
+         list[i].style.display = "block";                  
+      } else {
+         //Hides the unwanted items from the page. The CSS list-style-type property is used to define the style of the list item marker
+         list[i].style.display = "none";                    
+      }
+   }
+} 
+ //Calling the showPage function carries the listItems function as a parameter. 1  is for the first page.
+showPage(listItems, 1);
 
 
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
+//const showPage = (list, page) => { 
+//Loop over items in the list parameter 
+//-- If the index of a list item is >= the index of the first item that should be shown on the page -- && the list item index is <= the index of the last item 
+//	that should be shown on the page, show it */ } 
+   
 
 
 
-
-
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
