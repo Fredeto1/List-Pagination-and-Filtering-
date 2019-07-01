@@ -30,15 +30,41 @@ const showPage = (list, page) => {
 showPage(listItems, 1);
 
 
+
 /*** 
    Create the `appendPageLinks function` to generate, append, and add 
    functionality to the pagination buttons.
 ***/
-//const showPage = (list, page) => { 
-//Loop over items in the list parameter 
-//-- If the index of a list item is >= the index of the first item that should be shown on the page -- && the list item index is <= the index of the last item 
-//	that should be shown on the page, show it */ } 
-   
+const appendPageLinks = (list) => { 
+   const totalNumberOfPages = Math.ceil(list.length/itemsPerPage);
+   const createDiv = document.createElement("div");
+      createDiv.className = "pagination";
+      document.querySelector(".page").appendChild(createDiv);
+   const ul = document.createElement("ul");
+      createDiv.appendChild(ul);
+      for (let x = 1; x <= totalNumberOfPages; x++) {  
+         const li = document.createElement("li");
+         const aTag= document.createElement("a");
+         aTag.textContent= x;
+         aTag.href="#";
+        if (x===1) {
+         aTag.className = "active";
+        }
+         ul.appendChild(li);
+         li.appendChild(aTag); 
+      }
+      
 
+      ul.addEventListener("click",(event) => {
 
-
+         const linkClink= event.target;
+         const pageNumber= event.target.textContent;
+         showPage(listItems,pageNumber);
+         const allLinks= document.querySelectorAll("a");
+      for (let y=0; y < allLinks.length; y++) {  
+         allLinks[y].className = "none";
+      }
+      linkClink.className = "active";
+      });   
+}
+appendPageLinks(listItems); 
